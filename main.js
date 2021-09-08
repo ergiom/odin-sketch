@@ -7,9 +7,18 @@ function createDivs() {
     }
 }
 
-function changeColor() {
-
+function changeColor(event) {
+    let div = event.target;
+    div.removeEventListener('mousemove', changeColor);
+    div.style.backgroundColor = 'black';
 }
 
-createDivs();
-let divs = Array.from(document.querySelectorAll('.grid-div'));
+function initialize() {
+    createDivs();
+    let divs = Array.from(document.querySelectorAll('.grid-div'));
+    console.log(divs);
+    divs.forEach((div) =>
+        div.addEventListener('mousemove', changeColor));
+}
+
+initialize();
