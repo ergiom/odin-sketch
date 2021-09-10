@@ -10,8 +10,19 @@ function createDivs(size) {
 
 function changeColor(event) {
     let div = event.target;
-    div.removeEventListener('mousemove', changeColor);
-    div.style.backgroundColor = 'black';
+    let bColor = window.getComputedStyle(div).backgroundColor;
+
+    let re = /\d+/;
+    let colorValue = Number(re.exec(bColor));
+
+    let newColorValue = colorValue - 10;
+    let newBackgroundColor = 
+        `rgb(${newColorValue},${newColorValue},${newColorValue})`;
+    div.style.backgroundColor = newBackgroundColor;
+
+    if (!newColorValue) {
+        div.removeEventListener('mousemove', changeColor);
+    }
 }
 
 function sizeInput() {
@@ -30,7 +41,6 @@ function initialize() {
     grid_div.innerHTML = '';
     createDivs(size);
     let divs = Array.from(document.querySelectorAll('.grid-div'));
-    console.log(divs);
     divs.forEach((div) =>
         div.addEventListener('mousemove', changeColor));
 }
