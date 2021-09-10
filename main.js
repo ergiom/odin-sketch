@@ -32,17 +32,28 @@ function sizeInput() {
     }
 }
 
-function initialize() {
+function addResetButton() {
     let restart = document.querySelector('#reset-button');
     restart.addEventListener('click', initialize);
-    let size = sizeInput();
+}
 
+function drawGridOfDivs() {
+    let size = sizeInput();
     let grid_div = document.querySelector('#main-grid-div');
     grid_div.innerHTML = '';
     createDivs(size);
+}
+
+function makeDivsDrawable() {
     let divs = Array.from(document.querySelectorAll('.grid-div'));
     divs.forEach((div) =>
-        div.addEventListener('mousemove', changeColor));
+        div.addEventListener('mouseover', changeColor));
+}
+
+function initialize() {
+    addResetButton();
+    drawGridOfDivs();
+    makeDivsDrawable();
 }
 
 initialize();
