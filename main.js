@@ -10,10 +10,10 @@ function createDivs(size) {
 
 function changeColor(event) {
     let div = event.target;
-    let bColor = window.getComputedStyle(div).backgroundColor;
+    let backColor = window.getComputedStyle(div).backgroundColor;
 
     let re = /\d+/;
-    let colorValue = Number(re.exec(bColor));
+    let colorValue = Number(re.exec(backColor));
 
     let newColorValue = colorValue - 10;
     let newBackgroundColor = 
